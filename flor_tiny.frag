@@ -1,0 +1,2 @@
+precision mediump float;
+uniform vec2 u_resolution,u_mouse;uniform float u_time;void main(){vec2 p=(gl_FragCoord.xy-u_resolution*.5)/u_resolution.y;vec2 m=(u_mouse-u_resolution*.5)/u_resolution.y;float a=atan(p.y,p.x),r=length(p);float i=smoothstep(.65,1.,dot(p,m)/(r*length(m)+1e-6));float b=(.25+.08*cos(7.*a))*(1.+.18*sin(u_time)*i);float f=1.-smoothstep(b-.005,b+.005,r);vec3 c=mix(vec3(1.,.8,.2),mix(vec3(1.,.2,.5),vec3(.2,.4,1.),.5+.5*sin(u_time*.8)),i);gl_FragColor=vec4(mix(vec3(.02,.02,.1),c,f),1.);}
